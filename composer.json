@@ -1,0 +1,27 @@
+{
+  "name": "scriptfusion/array-walker",
+  "description": "Walks nested array structures to retrieve values.",
+  "authors": [
+    {
+      "name": "Bilge",
+      "email": "bilge@scriptfusion.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "scriptfusion/static-class": "^1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4"
+  },
+  "autoload": {
+    "psr-4": {
+      "ScriptFUSION\\ArrayWalker\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ScriptFUSIONTest\\": "test"
+    }
+  }
+}
