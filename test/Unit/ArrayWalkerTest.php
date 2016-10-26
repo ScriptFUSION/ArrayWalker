@@ -28,4 +28,16 @@ final class ArrayWalkerTest extends \PHPUnit_Framework_TestCase
         self::assertSame($level1, ArrayWalker::walk($level2, ['foo']));
         self::assertSame('baz', ArrayWalker::walk($level2, ['foo', 'bar']));
     }
+
+    public function testWalkReference()
+    {
+        $level2 = [
+            'foo' => [
+                'bar' => 'baz',
+            ],
+        ];
+        $level1 = &ArrayWalker::walk($level2, ['foo']);
+        $level1['bar'] = 'qux';
+        self::assertSame('qux', $level2['foo']['bar']);
+    }
 }
