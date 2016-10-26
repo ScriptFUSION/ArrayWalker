@@ -20,11 +20,12 @@ class ArrayWalker
      *
      * @return mixed The matching element's value if found, otherwise null.
      */
-    public static function walk(array $array, array $path)
+    public static function &walk(array &$array, array $path)
     {
         while (count($path)) {
             if (!is_array($array)) {
-                return null;
+                $array = null;
+                break;
             }
 
             $array = &$array[array_shift($path)];
