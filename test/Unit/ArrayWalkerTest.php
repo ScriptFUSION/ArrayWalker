@@ -11,9 +11,6 @@ final class ArrayWalkerTest extends \PHPUnit_Framework_TestCase
 
         self::assertSame($level1, ArrayWalker::walk($level1, []));
         self::assertSame('bar', ArrayWalker::walk($level1, ['foo']));
-
-        self::assertNull(ArrayWalker::walk($level1, ['foo', 'bar']));
-        self::assertNull(ArrayWalker::walk($level1, ['bar']));
     }
 
     public function testWalkLevel2()
@@ -27,5 +24,15 @@ final class ArrayWalkerTest extends \PHPUnit_Framework_TestCase
         self::assertSame($level2, ArrayWalker::walk($level2, []));
         self::assertSame($level1, ArrayWalker::walk($level2, ['foo']));
         self::assertSame('baz', ArrayWalker::walk($level2, ['foo', 'bar']));
+    }
+    
+    public function testWalkUndefined()
+    {
+        $level1 = ['foo' => 'bar'];
+
+        self::assertNull(ArrayWalker::walk($level1, ['foo', 'bar']));
+        self::assertNull(ArrayWalker::walk($level1, ['bar']));
+        self::assertNull(ArrayWalker::walk($level1, ['bar', 'baz']), 'Accessing child of NULL should result in NULL');
+        self::assertNull(ArrayWalker::walk($level1, ['foo', 'bar', 'baz']), 'Accessing child of leaf should result in NULL');
     }
 }
