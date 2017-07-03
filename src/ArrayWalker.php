@@ -27,7 +27,7 @@ class ArrayWalker
                 return null;
             }
 
-            $array = &$array[array_shift($path)];
+            $array = $array[array_shift($path)];
         }
 
         return $array;
