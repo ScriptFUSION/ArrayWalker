@@ -23,5 +23,8 @@
     "psr-4": {
       "ScriptFUSIONTest\\": "test"
     }
+  },
+  "scripts": {
+    "test": "phpunit test"
   }
 }

@@ -3,24 +3,30 @@ notifications:
 
 sudo: false
 
-cache:
-  directories:
-    - .composer/cache
-
 language: php
 
 php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - vendor
 
 install:
-  - composer -n selfupdate
-  - composer -n --prefer-source install
-  - composer -n --prefer-source require satooshi/php-coveralls
+  - alias composer=composer\ -n && composer selfupdate
+  - composer validate
+  - composer update --no-progress --no-suggest
 
 script:
-  - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml test
+  - composer test -- --coverage-clover=build/logs/clover.xml
 
 after_success:
-  - vendor/bin/coveralls -v
+  - composer require php-coveralls/php-coveralls:^2
+  - vendor/bin/php-coveralls -v

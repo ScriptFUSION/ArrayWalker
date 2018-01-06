@@ -6,7 +6,7 @@ use ScriptFUSION\StaticClass;
 /**
  * Walks nested array structures to retrieve values.
  */
-class ArrayWalker
+final class ArrayWalker
 {
     use StaticClass;
 
